@@ -4,9 +4,9 @@
 (function () {
     'use strict';
 
-    angular.module('components.stepper', []).directive('tdStepper', TdStepper);
+    angular.module('feb.stepper', []).directive('febStepper', Stepper);
 
-    function TdStepper() {
+    function Stepper() {
 
         var directive = {
             restrict: 'E',

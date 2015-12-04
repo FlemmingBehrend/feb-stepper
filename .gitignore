@@ -1,0 +1,6 @@
+/.idea
+.DS_Store
+npm-debug.log
+feb-stepper.iml
+/bower_components
+/node_modules

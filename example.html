@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Example</title>
+    <link rel="stylesheet" href="stepper.css">
+</head>
+<body ng-app="ExampleApp">
+
+    <div class="container">
+        <feb-stepper steps="['Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5']" control="stepperControl"></feb-stepper>
+    </div>
+    <div>
+        <button ng-click="stepperControl.prevStep()">Prev step</button>
+        <button ng-click="stepperControl.nextStep()">Next step</button>
+    </div>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="stepper.js"></script>
+    <script>
+        angular.module('ExampleApp', ['feb.stepper'])
+                .controller('Ctrl', function ($scope) {
+                    $scope.stepperControl = {};
+                });
+    </script>
+</body>
+</html>
