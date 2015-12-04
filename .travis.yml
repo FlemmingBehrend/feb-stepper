@@ -2,7 +2,11 @@ language: node_js
 node_js:
   - 0.10
 before_script:
-  - npm install
+  - npm install -g bower
+  - npm install -g jasmine-core
+  - npm install -g karma
+  - npm install -g karma-jasmine
+  - npm install -g karma-firefox-launcher
   - bower install
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
