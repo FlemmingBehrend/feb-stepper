@@ -3,18 +3,13 @@
   "authors": [
     "FlemmingBehrend <feb@topdanmark.dk>"
   ],
-  "description": "Angular directirve to show steps visually",
+  "description": "Angular directive to show steps visually",
   "version": "0.0.0",
   "main": "stepper.js",
   "private": true,
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components"
-  ],
   "dependencies": {
-    "angular": "~1.4.8",
-    "jquery": "~2.1.4"
+    "jquery": "~2.1.4",
+    "angular": "~1.4.8"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.8"
