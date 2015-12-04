@@ -16,13 +16,7 @@ module.exports = function (config) {
 
         logLevel: config.LOG_INFO,
 
-        browsers: ['Chrome', 'ChromeCanary'],
-        customLaunchers: {
-            Chrome_travis_ci: {
-                base: 'Chrome',
-                flags: ['--no-sandbox']
-            }
-        },
+        browsers: ['Firefox'],
 
         frameworks: ['jasmine'],
 
@@ -31,9 +25,5 @@ module.exports = function (config) {
         autoWatch: true,
         singleRun: false
     });
-
-    if(process.env.TRAVIS){
-        config.browsers = ['Chrome_travis_ci'];
-    }
 
 };
