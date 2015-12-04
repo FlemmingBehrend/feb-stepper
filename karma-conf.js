@@ -1,5 +1,6 @@
 module.exports = function (config) {
-    config.set({
+
+    return config.set({
         basePath: '',
         files: [
             'bower_components/jquery/dist/jquery.js',
@@ -16,7 +17,10 @@ module.exports = function (config) {
 
         logLevel: config.LOG_INFO,
 
-        browsers: ['Firefox'],
+        browsers: ['PhantomJS'],
+
+        // needed for the karma runner
+        phantomjsLauncher: {cmd:{}},
 
         frameworks: ['jasmine'],
 
