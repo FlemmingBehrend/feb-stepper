@@ -20,7 +20,11 @@ module.exports = function (config) {
         browsers: ['PhantomJS'],
 
         // needed for the karma runner
-        phantomjsLauncher: {cmd:{}},
+        phantomjsLauncher: {
+            cmd: {
+                darwin: process.env.PHANTOMJS_BIN
+            }
+        },
 
         frameworks: ['jasmine'],
 

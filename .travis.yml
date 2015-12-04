@@ -11,12 +11,5 @@ cache:
     - bower_components
 
 before_install:
-  - "npm config set spin false"
-  - "npm --version"
-  - "phantomjs --version"
-
-install:
-  - "npm install"
-
-script:
-  - npm test
+  - npm --version
+  - phantomjs --version
