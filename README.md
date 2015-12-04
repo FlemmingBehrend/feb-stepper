@@ -19,3 +19,10 @@ Angular directive to visually show steps in a wizards etc. If it does not fit yo
     start-step="1">
 </feb-stepper>
 ```
+### Control object
+You control the directives behavior though an object given in the control attribute. The object you need to give can be an empty object, but you need to keep a reference in the `$scope`of the controller. When the directive is linked, the object will be initialized and you can start using the following methods.  
+
+* `nextStep()`  
+This will make the current step completed and the next active. The operation will be ignored if the are no next step.
+* `prevStep()`  
+This will make the current step uncompleted and the previous is changed from completed to active.
