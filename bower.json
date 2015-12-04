@@ -1,0 +1,15 @@
+{
+  "name": "feb-stepper",
+  "authors": [
+    "FlemmingBehrend <feb@topdanmark.dk>"
+  ],
+  "description": "Angular directirve to show steps visually",
+  "version": "0.0.0"
+  "main": "stepper.js",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ]
+}
