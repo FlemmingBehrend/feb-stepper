@@ -33,6 +33,7 @@
                     ce('<feb-stepper steps=[]></feb-stepper>');
                 }).toThrow();
             });
+
             it('is not allowed to create a stepper with one step', function() {
                 expect(function () {
                     ce('<feb-stepper steps=["step"]></feb-stepper>');
@@ -41,9 +42,9 @@
 
             it('creates a stepper without any active or completed steps', function() {
                 var el = ce('<feb-stepper steps="[\'step1\'\,\'step2\']"><feb-stepper>');
-                var steps = el.find('ul >');
-                expect(steps.hasClass('completed')).toBe(false);
-                expect(steps.hasClass('active')).toBe(false);
+                var steps = el.find('.feb-stepper-container >');
+                expect(steps.hasClass('feb-step-completed')).toBe(false);
+                expect(steps.hasClass('feb-step-active')).toBe(false);
                 var directiveScope = el.find('feb-stepper').isolateScope();
                 expect(directiveScope.control.start).toBe(true);
                 expect(directiveScope.control.end).toBe(false);

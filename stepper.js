@@ -41,7 +41,6 @@
                             '<td style="width: 1%"><span class="feb-step-bubble"></span></td>' +
                             '<td style="width: 50%">' + buildLine() + '</td>' +
                         '</tr>' +
-                        '<tr><td class="feb-value-text" colspan="3">value</td></tr>' +
                     '</table>';
         }
 
@@ -57,7 +56,8 @@
             var template = '<div><ul class="feb-stepper-container">';
             var counter = 1;
             angular.forEach(steps, function (step) {
-                template += '<li class="feb-step' + counter++ + '">' + buildStep(step) + '</li>';
+                template += '<li class="feb-step' + counter + '">' + buildStep(step) + '</li>';
+                counter++;
             });
             template += '</ul></div>';
             element.html(template);
@@ -138,10 +138,6 @@
                     scope.control.start = false;
                     scope.control.end = false;
                 }
-            };
-
-            scope.control.updateStepText = function (number, text) {
-                console.log(number + ' : ' + text);
             };
 
             function fetchStep(stepNumber) {
