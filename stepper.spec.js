@@ -73,12 +73,12 @@
 
                 it('sets the start step as active', function() {
                     var el = ce('<feb-stepper steps="[\'step1\'\,\'step2\'\,\'step3\']" start-step="2"><feb-stepper>');
-                    expect(el.find('.active').length).toBe(1);
+                    expect(el.find('.feb-step-active').length).toBe(1);
                 });
 
                 it('set previous steps as completed', function() {
                     var el = ce('<feb-stepper steps="[\'step1\'\,\'step2\'\,\'step3\']" start-step="3"><feb-stepper>');
-                    expect(el.find('.completed').length).toBe(2);
+                    expect(el.find('.feb-step-completed').length).toBe(2);
                 });
 
                 it('set the start flag then start-step is set to 1', function() {
@@ -108,8 +108,8 @@
                     var el = ce('<feb-stepper steps="[\'step1\'\,\'step2\'\,\'step3\']" control="control" start-step="1"><feb-stepper>');
                     scope.control.nextStep();
                     var steps = el.find('ul >');
-                    expect($(steps[0]).hasClass('completed')).toBe(true);
-                    expect($(steps[1]).hasClass('active')).toBe(true);
+                    expect($(steps[0]).hasClass('feb-step-completed')).toBe(true);
+                    expect($(steps[1]).hasClass('feb-step-active')).toBe(true);
                 });
 
                 it('sets the end flag if next step reach the last step', function() {
@@ -159,8 +159,8 @@
                     var el = ce('<feb-stepper steps="[\'step1\'\,\'step2\'\,\'step3\']" control="control" start-step="2"><feb-stepper>');
                     scope.control.prevStep();
                     var steps = el.find('ul >');
-                    expect($(steps[0]).hasClass('active')).toBe(true);
-                    expect(steps.hasClass('completed')).toBe(false);
+                    expect($(steps[0]).hasClass('feb-step-active')).toBe(true);
+                    expect(steps.hasClass('feb-step-completed')).toBe(false);
                 });
 
                 it('does nothing if the active step is the first step', function() {
