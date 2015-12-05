@@ -6,7 +6,7 @@
 
 }
 
-@mixin bubble-transition($sec: 1s) {
+@mixin transition($sec: 1s) {
   -webkit-transition: $sec;
   -moz-transition: $sec;
   -ms-transition: $sec;
@@ -20,5 +20,5 @@
   display: block;
   margin: 0.8em 0 0.8em 0;
   border-bottom: 1px solid #888888;
-  @include bubble-transition;
+  @include transition;
 }
