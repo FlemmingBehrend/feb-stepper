@@ -33,11 +33,31 @@
             return steps;
         }
 
+        function buildStep(step) {
+            return '<table style="width: 100%" cellpadding="0" cellspacing="0">' +
+                        '<tr><td class="step-text" colspan="3">' + step + '</td></tr>' +
+                        '<tr>' +
+                            '<td style="width: 50%">' + buildLine() + '</td>' +
+                            '<td style="width: 1%"><span class="bubble"></span></td>' +
+                            '<td style="width: 50%">' + buildLine() + '</td>' +
+                        '</tr>' +
+                        '<tr><td class="value-text" colspan="3">value</td></tr>' +
+                    '</table>';
+        }
+
+        function buildLine() {
+            return '<table style="width: 100%" cellpadding="0" cellspacing="0">' +
+                        '<tr><td></td></tr>' +
+                        '<tr><td class="line-cell"></td></tr>' +
+                        '<tr><td></td></tr>' +
+                    '</table>'
+        }
+
         function buildComponent(steps, element) {
             var template = '<div><ul class="progress-indicator">';
             var counter = 1;
             angular.forEach(steps, function (step) {
-                template += '<li class="step' + counter++ + '"><span class="bubble"></span>' + step + '</li>';
+                template += '<li class="step' + counter++ + '">' + buildStep(step) + '</li>';
             });
             template += '</ul></div>';
             element.html(template);

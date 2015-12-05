@@ -8,12 +8,13 @@
 <body ng-app="ExampleApp">
 
     <div class="container">
-        <feb-stepper steps="['Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5']" control="stepperControl"></feb-stepper>
+        <feb-stepper steps="['Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5']" control="stepperControl" start-step="1"></feb-stepper>
     </div>
     <div>
         <button ng-click="stepperControl.prevStep()">Prev step</button>
         <button ng-click="stepperControl.nextStep()">Next step</button>
     </div>
+
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="stepper.js"></script>
