@@ -1,0 +1,24 @@
+@mixin flex($length: 1) {
+  -ms-flex: $length;
+  -webkit-flex: $length;
+  -moz-flex: $length;
+  flex: $length;
+
+}
+
+@mixin bubble-transition($sec: 1s) {
+  -webkit-transition: $sec;
+  -moz-transition: $sec;
+  -ms-transition: $sec;
+  -o-transition: $sec;
+  transition: $sec;
+}
+
+@mixin bubble($size) {
+  width: $size;
+  height: $size;
+  display: block;
+  margin: 0.8em 0 0.8em 0;
+  border-bottom: 1px solid #888888;
+  @include bubble-transition;
+}

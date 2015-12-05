@@ -35,36 +35,36 @@
 
         function buildStep(step) {
             return '<table style="width: 100%" cellpadding="0" cellspacing="0">' +
-                        '<tr><td class="step-text" colspan="3">' + step + '</td></tr>' +
+                        '<tr><td class="feb-step-text" colspan="3">' + step + '</td></tr>' +
                         '<tr>' +
                             '<td style="width: 50%">' + buildLine() + '</td>' +
-                            '<td style="width: 1%"><span class="bubble"></span></td>' +
+                            '<td style="width: 1%"><span class="feb-step-bubble"></span></td>' +
                             '<td style="width: 50%">' + buildLine() + '</td>' +
                         '</tr>' +
-                        '<tr><td class="value-text" colspan="3">value</td></tr>' +
+                        '<tr><td class="feb-value-text" colspan="3">value</td></tr>' +
                     '</table>';
         }
 
         function buildLine() {
             return '<table style="width: 100%" cellpadding="0" cellspacing="0">' +
                         '<tr><td></td></tr>' +
-                        '<tr><td class="line-cell"></td></tr>' +
+                        '<tr><td class="feb-line-cell"></td></tr>' +
                         '<tr><td></td></tr>' +
                     '</table>'
         }
 
         function buildComponent(steps, element) {
-            var template = '<div><ul class="progress-indicator">';
+            var template = '<div><ul class="feb-stepper-container">';
             var counter = 1;
             angular.forEach(steps, function (step) {
-                template += '<li class="step' + counter++ + '">' + buildStep(step) + '</li>';
+                template += '<li class="feb-step' + counter++ + '">' + buildStep(step) + '</li>';
             });
             template += '</ul></div>';
             element.html(template);
             return counter;
         }
 
-        function initilizeControlObject(scope, counter) {
+        function initControlObject(scope, counter) {
             scope.control = scope.control || {startStep: scope.startStep};
             scope.control.start = true;
             scope.control.end = false;
@@ -75,16 +75,16 @@
         function link(scope, element, attrs) {
             var steps = validateAndEvaluateSteps(scope);
             var counter = buildComponent(steps, element);
-            initilizeControlObject(scope, counter);
+            initControlObject(scope, counter);
 
             if (scope.startStep) {
                 // we need to initialize the stepper at the start position.
                 var startStep = scope.$eval(scope.startStep);
                 var newActiveStep = fetchStep(startStep);
-                newActiveStep.addClass('active');
+                newActiveStep.addClass('feb-step-active');
                 for (var i = 1; i < startStep; i++) {
                     var step = fetchStep(i);
-                    step.addClass('completed');
+                    step.addClass('feb-step-completed');
                 }
                 if (startStep === scope.control.numberOfSteps) {
                     scope.control.start = false;
@@ -106,10 +106,10 @@
                     return;
                 }
                 if (elementForCurrentStep !== null) {
-                    elementForCurrentStep.removeClass('active');
-                    elementForCurrentStep.addClass('completed');
+                    elementForCurrentStep.removeClass('feb-step-active');
+                    elementForCurrentStep.addClass('feb-step-completed');
                 }
-                elementForNewActiveStep.addClass('active');
+                elementForNewActiveStep.addClass('feb-step-active');
                 if (scope.control.activeStep === scope.control.numberOfSteps) {
                     scope.control.end = true;
                     scope.control.start = false;
@@ -128,9 +128,9 @@
                     scope.control.activeStep++;
                     return;
                 }
-                elementForCurrentStep.removeClass('active');
-                elementForNewActiveStep.removeClass('completed');
-                elementForNewActiveStep.addClass('active');
+                elementForCurrentStep.removeClass('feb-step-active');
+                elementForNewActiveStep.removeClass('feb-step-completed');
+                elementForNewActiveStep.addClass('feb-step-active');
                 if (scope.control.activeStep === 1) {
                     scope.control.start = true;
                     scope.control.end = false;
@@ -145,7 +145,7 @@
             };
 
             function fetchStep(stepNumber) {
-                var el = element[0].querySelector('.step' + stepNumber);
+                var el = element[0].querySelector('.feb-step' + stepNumber);
                 if (el === null) {
                     return null;
                 } else {

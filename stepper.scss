@@ -1,0 +1,77 @@
+@import "mixins";
+@import "placeholders";
+
+// Size
+$bobbleSize: 30px;
+$bobbleExpandSize: $bobbleSize * 2;
+$containerHeight: $bobbleExpandSize * 2;
+$lineCellHeight: $containerHeight / 10;
+
+// Colors
+$normalStepColor: #bbbbbb;
+$completedStepColor: #008000;
+$activeStepColor: lighten($completedStepColor, 10%);
+
+// container
+.feb-stepper-container {
+  @extend %flex-box;
+  @extend %no-margin-or-padding;
+  height: $containerHeight;
+  & > li {
+    @include flex;
+    @extend %no-margin-or-padding;
+    list-style: none;
+    text-align: center;
+    position: relative;
+    text-overflow: ellipsis;
+    display: block;
+  }
+}
+
+.feb-step-text {
+  text-transform: uppercase;
+}
+
+.feb-line-cell {
+  width: 100%;
+  height: $lineCellHeight;
+  background-color: $normalStepColor;
+}
+
+.feb-value-text {
+  font-weight: bold;
+}
+
+.feb-step-bubble {
+  @include bubble($bobbleSize);
+  border-radius: $bobbleSize;
+  background-color: $normalStepColor;
+  transform: scale(1,1);
+}
+
+// completed step
+.feb-step-completed {
+  color: $completedStepColor;
+  .feb-line-cell {
+    background-color: $completedStepColor;
+  }
+  .feb-step-bubble {
+    background-color: $completedStepColor;
+    border-color: $completedStepColor;
+  }
+}
+
+// active step
+.feb-step-active {
+  color: $activeStepColor;
+  .feb-line-cell {
+    background-color: $activeStepColor;
+  }
+  .feb-step-bubble {
+    @include  bubble($bobbleSize);
+    border-radius: $bobbleExpandSize;
+    background-color: $activeStepColor;
+    border-color: $activeStepColor;
+    transform: scale(1.5,1.5);
+  }
+}

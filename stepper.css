@@ -1,76 +1,68 @@
-.progress-indicator {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    background-color: #ded7ff;
-    height: 100px;
-}
+.feb-stepper-container, .feb-stepper-container > li {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0; }
 
-.progress-indicator > li {
+.feb-stepper-container {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex; }
+
+.feb-stepper-container {
+  height: 120px; }
+  .feb-stepper-container > li {
     -ms-flex: 1;
     -webkit-flex: 1;
     -moz-flex: 1;
     flex: 1;
-}
-
-.progress-indicator {
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-}
-
-.progress-indicator > li {
     list-style: none;
     text-align: center;
-    padding: 0;
-    margin: 0;
     position: relative;
     text-overflow: ellipsis;
-    color: #bbbbbb;
-    display: block;
-}
+    display: block; }
 
-.progress-indicator >li.active > table .line-cell {
-    width: 100%;
-    height: 10px;
-    background-color: green;
-}
+.feb-step-text {
+  text-transform: uppercase; }
 
-.progress-indicator >li.completed > table .line-cell {
-    width: 100%;
-    height: 10px;
-    background-color: green;
-}
+.feb-line-cell {
+  width: 100%;
+  height: 12px;
+  background-color: #bbbbbb; }
 
-.progress-indicator >li > table .line-cell {
-    width: 100%;
-    height: 10px;
-    background-color: #bbbbbb;
-}
+.feb-value-text {
+  font-weight: bold; }
 
-.progress-indicator > li > table .step-text {
-    text-transform: uppercase;
-}
+.feb-step-bubble {
+  width: 30px;
+  height: 30px;
+  display: block;
+  margin: 0.8em 0 0.8em 0;
+  border-bottom: 1px solid #888888;
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  -ms-transition: 1s;
+  -o-transition: 1s;
+  transition: 1s;
+  border-radius: 30px;
+  background-color: #bbbbbb;
+  transform: scale(1, 1); }
 
-.progress-indicator > li > table .value-text {
-    font-weight: bold;
-    color: #261a3b;
-}
+.feb-step-completed {
+  color: #008000; }
+  .feb-step-completed .feb-line-cell {
+    background-color: #008000; }
+  .feb-step-completed .feb-step-bubble {
+    background-color: #008000;
+    border-color: #008000; }
 
-.progress-indicator > li.completed {
-    color: green;
-}
-
-.progress-indicator > li.active {
-    color: green;
-}
-
-.progress-indicator > li .bubble {
-    border-radius: 30px;
+.feb-step-active {
+  color: #00b300; }
+  .feb-step-active .feb-line-cell {
+    background-color: #00b300; }
+  .feb-step-active .feb-step-bubble {
     width: 30px;
     height: 30px;
-    background-color: #bbbbbb;
     display: block;
     margin: 0.8em 0 0.8em 0;
     border-bottom: 1px solid #888888;
@@ -79,62 +71,9 @@
     -ms-transition: 1s;
     -o-transition: 1s;
     transition: 1s;
-    transform: scale(1,1);
-}
-
-.progress-indicator > li.completed .bubble {
-    background-color: green;
-    border-color: green;
-    -webkit-transition: 1s;
-    -moz-transition: 1s;
-    -ms-transition: 1s;
-    -o-transition: 1s;
-    transition: 1s;
-    transform: scale(1,1);
-}
-
-.progress-indicator > li.active .bubble {
-    background-color: yellowgreen;
-    border-color: #000066;
     border-radius: 60px;
-    -webkit-transition: 1s;
-    -moz-transition: 1s;
-    -ms-transition: 1s;
-    -o-transition: 1s;
-    transition: 1s;
-    transform: scale(1.5,1.5);
-}
+    background-color: #00b300;
+    border-color: #00b300;
+    transform: scale(1.5, 1.5); }
 
-/*.progress-indicator.stacked > li {*/
-    /*text-indent: -10px;*/
-    /*text-align: center;*/
-    /*display: block;*/
-/*}*/
-
-/*.progress-indicator.stacked > li .bubble:before, .progress-indicator.stacked > li .bubble:after {*/
-    /*left: 50%;*/
-    /*margin-left: -1.5px;*/
-    /*width: 3px;*/
-    /*height: 100%;*/
-/*}*/
-
-/*.progress-indicator.stacked .stacked-text {*/
-    /*position: relative;*/
-    /*z-index: 10;*/
-    /*top: 0;*/
-    /*margin-left: 60% !important;*/
-    /*width: 45% !important;*/
-    /*display: inline-block;*/
-    /*text-align: left;*/
-    /*line-height: 1.2em;*/
-/*}*/
-
-/*.progress-indicator.stacked > li a {*/
-    /*border: none;*/
-/*}*/
-
-/*@media handheld, screen and (max-width: 400px) {*/
-    /*.progress-indicator {*/
-        /*font-size: 60%;*/
-    /*}*/
-/*}*/
+/*# sourceMappingURL=stepper.css.map */

@@ -1,0 +1,12 @@
+%no-margin-or-padding {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+}
+
+%flex-box {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
