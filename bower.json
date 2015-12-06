@@ -14,7 +14,7 @@
     "stepper.spec.js",
     ".gitignore",
     ".travis.yml",
-    "karma-conf.js"
+    "karma.conf.js"
   ],
   "dependencies": {
     "jquery": "~2.1.4",
