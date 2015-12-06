@@ -4,9 +4,18 @@
     "FlemmingBehrend <feb@topdanmark.dk>"
   ],
   "description": "Angular directive to show steps visually",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "stepper.js",
   "private": true,
+  "ignore": [
+    "stepper.gif",
+    "example.html",
+    "README.md",
+    "stepper.spec.js",
+    ".gitignore",
+    ".travis.yml",
+    "karma-conf.js"
+  ],
   "dependencies": {
     "jquery": "~2.1.4",
     "angular": "~1.4.8"
