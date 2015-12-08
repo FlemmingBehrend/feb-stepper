@@ -42,13 +42,13 @@
 
             it('creates a stepper without any active or completed steps', function() {
                 var el = ce('<feb-stepper steps="[\'step1\'\,\'step2\']"><feb-stepper>');
-                var steps = el.find('.feb-stepper-container >');
-                expect(steps.hasClass('feb-step-completed')).toBe(false);
-                expect(steps.hasClass('feb-step-active')).toBe(false);
+                expect(el.find('.feb-step-completed').length).toBe(0);
+                expect(el.find('.feb-step-active').length).toBe(0);
                 var directiveScope = el.find('feb-stepper').isolateScope();
                 expect(directiveScope.control.start).toBe(true);
                 expect(directiveScope.control.end).toBe(false);
                 expect(directiveScope.control.activeStep).toBe(0);
+                expect(directiveScope.control.numberOfSteps).toBe(2);
             });
 
             it('when 3 steps are supplied in the steps attribute the html should contain 3 elements', function() {
@@ -100,17 +100,17 @@
 
         });
 
-        describe('control directive', function() {
+        describe('navigation', function() {
 
             describe('when going ro next step', function() {
 
                 it('completes the active step and sets the next step as active', function() {
                     scope.control = {};
                     var el = ce('<feb-stepper steps="[\'step1\'\,\'step2\'\,\'step3\']" control="control" start-step="1"><feb-stepper>');
+                    expect(el.find('.feb-step1').hasClass('feb-step-active')).toBe(true);
                     scope.control.nextStep();
-                    var steps = el.find('ul >');
-                    expect($(steps[0]).hasClass('feb-step-completed')).toBe(true);
-                    expect($(steps[1]).hasClass('feb-step-active')).toBe(true);
+                    expect(el.find('.feb-step1').hasClass('feb-step-completed')).toBe(true);
+                    expect(el.find('.feb-step2').hasClass('feb-step-active')).toBe(true);
                 });
 
                 it('sets the end flag if next step reach the last step', function() {
@@ -158,10 +158,10 @@
                 it('make the current step unvisited and change the step before to active', function() {
                     scope.control = {};
                     var el = ce('<feb-stepper steps="[\'step1\'\,\'step2\'\,\'step3\']" control="control" start-step="2"><feb-stepper>');
+                    expect(el.find('.feb-step2').hasClass('feb-step-active')).toBe(true);
                     scope.control.prevStep();
-                    var steps = el.find('ul >');
-                    expect($(steps[0]).hasClass('feb-step-active')).toBe(true);
-                    expect(steps.hasClass('feb-step-completed')).toBe(false);
+                    expect(el.find('.feb-step1').hasClass('feb-step-active')).toBe(true);
+                    expect(el.find('.feb-step2').hasClass('feb-step-active')).toBe(false);
                 });
 
                 it('does nothing if the active step is the first step', function() {
@@ -195,6 +195,80 @@
                     scope.control.prevStep();
                     expect(scope.control.start).toBe(false);
                     expect(scope.control.end).toBe(false);
+                });
+
+            });
+
+            describe('when setting specific step index', function() {
+
+                it('is possible to set the current active step', function() {
+                    scope.control = {};
+                    ce('<feb-stepper steps="[\'step1\'\,\'step2\'\,\'step3\']" control="control"><feb-stepper>');
+                    expect(scope.control.setActiveStep).toBeDefined();
+                });
+
+                it('sets the active step in the control object to the specified index', function() {
+                    scope.control = {};
+                    ce('<feb-stepper steps="[\'step1\'\,\'step2\'\,\'step3\']" control="control"><feb-stepper>');
+                    scope.control.setActiveStep(2);
+                    expect(scope.control.activeStep).toBe(2);
+                });
+
+                it('it is not possible to use null or undefined as index', function() {
+                    ce('<feb-stepper steps="[\'step1\'\,\'step2\'\,\'step3\']" control="control"><feb-stepper>');
+                    expect(function () {
+                        scope.control.setActiveStep(null);
+                    }).toThrow();
+                    expect(function () {
+                        scope.control.setActiveStep(undefined);
+                    }).toThrow();
+                });
+
+                it('is not possible to set a negative index', function() {
+                    ce('<feb-stepper steps="[\'step1\'\,\'step2\'\,\'step3\']" control="control"><feb-stepper>');
+                    expect(function () {
+                        scope.control.setActiveStep(-2);
+                    }).toThrow();
+                });
+
+                it('is not possible to set an index higher than the maximum number of steps', function() {
+                    ce('<feb-stepper steps="[\'step1\'\,\'step2\'\,\'step3\']" control="control"><feb-stepper>');
+                    expect(function () {
+                        scope.control.setActiveStep(4);
+                    }).toThrow();
+                });
+
+                it('setting the index to zero clears any active steps and sets the start flag', function() {
+                    scope.control = {};
+                    ce('<feb-stepper steps="[\'step1\'\,\'step2\'\,\'step3\']" control="control" start-step="3"><feb-stepper>');
+                    scope.control.setActiveStep(0);
+                    expect(scope.control.activeStep).toBe(0);
+                    expect(scope.control.start).toBe(true);
+                    expect(scope.control.end).toBe(false);
+                });
+
+                it('setting a new active index should leave other steps configured with correct classes', function() {
+                    scope.control = {};
+                    var el = ce('<feb-stepper steps="[\'step1\'\,\'step2\'\,\'step3\']" control="control"><feb-stepper>');
+                    el.find('.feb-step1').addClass('feb-step-completed');
+                    el.find('.feb-step2').addClass('feb-step-completed');
+                    el.find('.feb-step3').addClass('feb-step-completed');
+                    scope.control.setActiveStep(0);
+                    expect(el.find('.feb-step1').hasClass('feb-step-completed')).toBe(false);
+                    expect(el.find('.feb-step2').hasClass('feb-step-completed')).toBe(false);
+                    expect(el.find('.feb-step3').hasClass('feb-step-completed')).toBe(false);
+                    scope.control.setActiveStep(1);
+                    expect(el.find('.feb-step1').hasClass('feb-step-active')).toBe(true);
+                    expect(el.find('.feb-step2').hasClass('feb-step-completed')).toBe(false);
+                    expect(el.find('.feb-step3').hasClass('feb-step-completed')).toBe(false);
+                    scope.control.setActiveStep(2);
+                    expect(el.find('.feb-step1').hasClass('feb-step-completed')).toBe(true);
+                    expect(el.find('.feb-step2').hasClass('feb-step-active')).toBe(true);
+                    expect(el.find('.feb-step3').hasClass('feb-step-completed')).toBe(false);
+                    scope.control.setActiveStep(3);
+                    expect(el.find('.feb-step1').hasClass('feb-step-completed')).toBe(true);
+                    expect(el.find('.feb-step2').hasClass('feb-step-completed')).toBe(true);
+                    expect(el.find('.feb-step3').hasClass('feb-step-active')).toBe(true);
                 });
 
             });
