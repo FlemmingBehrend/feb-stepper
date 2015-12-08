@@ -28,3 +28,6 @@ You control the directives behavior though an object given in the control attrib
 This will make the current step completed and the next active. The operation will be ignored if the are no next step.
 * `prevStep()`  
 This will make the current step uncompleted and the previous is changed from completed to active.
+* `setActiveStep(index)`  
+This will set the specified index to an active step. Steps before index will be set to completed and steps after index will have their completed and active status cleared.  
+Index can also be 0 (zero), this will clear all steps and there will be no active steps.
