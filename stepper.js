@@ -13,7 +13,7 @@
             'CLASS_ACTIVE': 'feb-step-active',
             'CLASS_STEP': 'feb-step',
             'CLASS_BUBBLE': 'feb-step-bubble',
-            'CLASS_CONTAINER': 'feb-step-container',
+            'CLASS_CONTAINER': 'feb-stepper-container',
             'CLASS_TEXT': 'feb-step-text',
             'CLASS_LINE_CELL': 'feb-line-cell'
         };
@@ -58,30 +58,26 @@
             }
 
             scope.control.nextStep = function () {
-                var elementForCurrentStep = fetchStep(scope.control.activeStep);
-                var elementForNewActiveStep = fetchStep(++scope.control.activeStep);
-                if (elementForNewActiveStep === null) {
-                    scope.control.activeStep--;
+                if (scope.control.end)
                     return;
+                var currentStep = fetchStep(scope.control.activeStep);
+                if (currentStep !== null) {
+                    resetClasses(currentStep);
+                    currentStep.addClass(CONSTANTS.CLASS_COMPLETED);
                 }
-                if (elementForCurrentStep !== null) {
-                    elementForCurrentStep.removeClass(CONSTANTS.CLASS_ACTIVE);
-                    elementForCurrentStep.addClass(CONSTANTS.CLASS_COMPLETED);
-                }
-                elementForNewActiveStep.addClass(CONSTANTS.CLASS_ACTIVE);
+                var newActiveStep = fetchStep(++scope.control.activeStep);
+                resetClasses(newActiveStep);
+                newActiveStep.addClass(CONSTANTS.CLASS_ACTIVE);
                 updateFlags();
             };
 
             scope.control.prevStep = function () {
-                var elementForCurrentStep = fetchStep(scope.control.activeStep);
-                var elementForNewActiveStep = fetchStep(--scope.control.activeStep);
-                if (elementForNewActiveStep === null) {
-                    scope.control.activeStep++;
+                if (scope.control.start)
                     return;
-                }
-                elementForCurrentStep.removeClass(CONSTANTS.CLASS_ACTIVE);
-                elementForNewActiveStep.removeClass(CONSTANTS.CLASS_ACTIVE);
-                elementForNewActiveStep.addClass(CONSTANTS.CLASS_ACTIVE);
+                resetClasses(fetchStep(scope.control.activeStep));
+                var newActiveStep = fetchStep(--scope.control.activeStep);
+                resetClasses(newActiveStep);
+                newActiveStep.addClass(CONSTANTS.CLASS_ACTIVE);
                 updateFlags();
             };
 
@@ -139,7 +135,7 @@
             function buildLine() {
                 return '<table style="width: 100%" cellpadding="0" cellspacing="0">' +
                     '<tr><td></td></tr>' +
-                    '<tr><td class="feb-line-cell"></td></tr>' +
+                    '<tr><td class="' + CONSTANTS.CLASS_LINE_CELL + '"></td></tr>' +
                     '<tr><td></td></tr>' +
                     '</table>'
             }

@@ -39,10 +39,6 @@ $activeStepColor: lighten($completedStepColor, 10%);
   @include transition;
 }
 
-.feb-value-text {
-  font-weight: bold;
-}
-
 .feb-step-bubble {
   @include bubble($bobbleSize);
   border-radius: $bobbleSize;

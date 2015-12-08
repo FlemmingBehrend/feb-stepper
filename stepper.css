@@ -35,9 +35,6 @@
   -o-transition: 1s;
   transition: 1s; }
 
-.feb-value-text {
-  font-weight: bold; }
-
 .feb-step-bubble {
   width: 30px;
   height: 30px;

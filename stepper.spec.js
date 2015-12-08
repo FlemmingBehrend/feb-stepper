@@ -162,6 +162,7 @@
                     scope.control.prevStep();
                     expect(el.find('.feb-step1').hasClass('feb-step-active')).toBe(true);
                     expect(el.find('.feb-step2').hasClass('feb-step-active')).toBe(false);
+                    expect(el.find('.feb-step2').hasClass('feb-step-completed')).toBe(false);
                 });
 
                 it('does nothing if the active step is the first step', function() {
