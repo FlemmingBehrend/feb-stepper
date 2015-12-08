@@ -4,7 +4,7 @@
     "FlemmingBehrend <feb@topdanmark.dk>"
   ],
   "description": "Angular directive to show steps visually",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "stepper.js",
   "private": true,
   "ignore": [
