@@ -5,16 +5,20 @@
     <title>Example</title>
     <link rel="stylesheet" href="stepper.css">
 </head>
-<body ng-app="ExampleApp">
+<body ng-app="ExampleApp" ng-controller="Ctrl">
 
     <div class="container">
-        <feb-stepper steps="['Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5']" control="stepperControl" start-step="1"></feb-stepper>
+        <feb-stepper steps="['{{stepNo1}}', 'Step 2', 'Step 3', 'Step 4', 'Step 5']" control="stepperControl" start-step="1"></feb-stepper>
     </div>
     <div>
         <button ng-click="stepperControl.prevStep()">Prev step</button>
         <button ng-click="stepperControl.nextStep()">Next step</button>
     </div>
-
+    <div>
+        <br/>
+        Change text for the first step :
+        <input ng-model="stepNo1"/>
+    </div>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="stepper.js"></script>
@@ -22,6 +26,7 @@
         angular.module('ExampleApp', ['feb.stepper'])
                 .controller('Ctrl', function ($scope) {
                     $scope.stepperControl = {};
+                    $scope.stepNo1 = "test";
                 });
     </script>
 </body>

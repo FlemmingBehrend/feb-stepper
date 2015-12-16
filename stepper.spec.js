@@ -100,6 +100,19 @@
 
         });
 
+        describe('update', function() {
+
+            it('step texts when step attribute changes', function() {
+                scope.stepText = 'test';
+                var el = ce('<feb-stepper steps="[\'{{stepText}}\'\,\'step2\'\,\'step3\']" control="control" start-step="1"><feb-stepper>');
+                scope.stepText = 'updated';
+                scope.$digest();
+                var directiveScope = el.find('feb-stepper').isolateScope();
+                expect(directiveScope.steps).toEqual('[\'updated\',\'step2\',\'step3\']');
+
+            });
+        });
+
         describe('navigation', function() {
 
             describe('when going ro next step', function() {

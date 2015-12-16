@@ -1,6 +1,3 @@
-// TODO: should it fire events when hitting start and end??
-// TODO: refactor the code now that it honor the spec
-// TODO: support for language change
 (function () {
     'use strict';
 
@@ -44,6 +41,10 @@
             var steps = validateElementStepsAttribute(scope);
             var counter = buildComponent(steps, element);
             initControlObject(scope, counter);
+
+            attrs.$observe('steps', function (newValue) {
+                updateStepTexts(scope.$eval(newValue), element);
+            });
 
             if (scope.startStep) {
                 // we need to initialize the stepper at the start position.
@@ -150,6 +151,15 @@
                 template += '</ul></div>';
                 element.html(template);
                 return counter;
+            }
+
+            function updateStepTexts(steps, element) {
+                var counter = 1;
+                var stepTexts = angular.element(element).find('td.feb-step-text');
+                angular.forEach(steps, function (step) {
+                    stepTexts[counter-1].innerText = step;
+                    counter++;
+                });
             }
 
             function updateFlags() {
