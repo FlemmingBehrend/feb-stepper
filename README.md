@@ -11,6 +11,7 @@ Angular directive to visually show steps in a wizards etc. If it does not fit yo
 ```javascript
 <feb-stepper 
     // An array of strings, each string transform to a new step
+    // Supports {{stepText}} as string values.
     steps="['step1', 'step2']" 
     
     // The control object that is bound to the scope that the stepper is added
