@@ -23,7 +23,8 @@
             scope: {
                 steps: '@',
                 control: '=',
-                startStep: '@'
+                startStep: '@',
+                stepLines: '@'
             }
         };
 
@@ -39,7 +40,8 @@
 
         function link(scope, element, attrs) {
             var steps = validateElementStepsAttribute(scope);
-            var counter = buildComponent(steps, element);
+            var stepLines = validateStepLines(scope);
+            var counter = buildComponent(steps, stepLines, element);
             initControlObject(scope, counter);
 
             attrs.$observe('steps', function (newValue) {
@@ -122,15 +124,27 @@
                 return steps;
             }
 
-            function buildStep(step) {
+            function validateStepLines(scope) {
+                if (scope.stepLines && scope.stepLines === 'true') {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            function buildStep(step, stepLines) {
+                var content = '';
+                if (stepLines) {
+                    content = buildLine();
+                }
                 return '<table style="width: 100%" cellpadding="0" cellspacing="0">' +
-                    '<tr><td class="' + CONSTANTS.CLASS_TEXT + '" colspan="3">' + step + '</td></tr>' +
-                    '<tr>' +
-                    '<td style="width: 50%">' + buildLine() + '</td>' +
-                    '<td style="width: 1%"><span class="' + CONSTANTS.CLASS_BUBBLE + '"></span></td>' +
-                    '<td style="width: 50%">' + buildLine() + '</td>' +
-                    '</tr>' +
-                    '</table>';
+                            '<tr><td class="' + CONSTANTS.CLASS_TEXT + '" colspan="3">' + step + '</td></tr>' +
+                            '<tr>' +
+                                '<td style="width: 50%">' + content + '</td>' +
+                                '<td style="width: 1%"><span class="' + CONSTANTS.CLASS_BUBBLE + '"></span></td>' +
+                                '<td style="width: 50%">' + content + '</td>' +
+                            '</tr>' +
+                        '</table>';
             }
 
             function buildLine() {
@@ -141,11 +155,11 @@
                     '</table>'
             }
 
-            function buildComponent(steps, element) {
+            function buildComponent(steps, stepLines, element) {
                 var template = '<div><ul class="' + CONSTANTS.CLASS_CONTAINER + '">';
                 var counter = 1;
                 angular.forEach(steps, function (step) {
-                    template += '<li class="' + CONSTANTS.CLASS_STEP + '' + counter + '">' + buildStep(step) + '</li>';
+                    template += '<li class="' + CONSTANTS.CLASS_STEP + '' + counter + '">' + buildStep(step, stepLines) + '</li>';
                     counter++;
                 });
                 template += '</ul></div>';
