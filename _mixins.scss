@@ -3,7 +3,6 @@
   -webkit-flex: $length;
   -moz-flex: $length;
   flex: $length;
-
 }
 
 @mixin transition($sec: 1s) {

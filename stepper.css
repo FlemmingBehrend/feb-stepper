@@ -22,11 +22,21 @@
     text-overflow: ellipsis;
     display: block; }
 
+.feb-step-container {
+  display: flex;
+  flex-flow: column; }
+
+.feb-line-container {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center; }
+
 .feb-step-text {
   text-transform: uppercase; }
 
 .feb-line-cell {
-  width: 100%;
+  width: 49%;
   height: 12px;
   background-color: #bbbbbb;
   -webkit-transition: 1s;
