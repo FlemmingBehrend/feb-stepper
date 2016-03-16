@@ -5,7 +5,9 @@
   ],
   "description": "Angular directive to show steps visually",
   "version": "1.0.0",
-  "main": "stepper.js",
+  "main": [
+      "stepper.js",
+      "stepper.css"],
   "private": true,
   "ignore": [
     "stepper.gif",
