@@ -41,7 +41,8 @@
             });
 
             it('creates a stepper without any active or completed steps', function() {
-                var el = ce('<feb-stepper steps="[\'step1\'\,\'step2\']"><feb-stepper>');
+                scope.control = {};
+                var el = ce('<feb-stepper control="control" steps="[\'step1\'\,\'step2\']"><feb-stepper>');
                 expect(el.find('.feb-step-completed').length).toBe(0);
                 expect(el.find('.feb-step-active').length).toBe(0);
                 var directiveScope = el.find('feb-stepper').isolateScope();
@@ -52,7 +53,8 @@
             });
 
             it('when 3 steps are supplied in the steps attribute the html should contain 3 elements', function() {
-                var el = ce('<feb-stepper steps="[\'step1\'\,\'step2\'\,\'step3\']"><feb-stepper>');
+                scope.control = {};
+                var el = ce('<feb-stepper control="control" steps="[\'step1\'\,\'step2\'\,\'step3\']"><feb-stepper>');
                 var steps = el.find('ul >');
                 expect(steps.length).toBe(3);
             });
@@ -65,7 +67,8 @@
             });
 
             it('sets the numberOfSteps attribute in the control object to the number of elements', function() {
-                var el = ce('<feb-stepper steps="[\'step1\'\,\'step2\'\,\'step3\']"><feb-stepper>');
+                scope.control = {};
+                var el = ce('<feb-stepper control="control" steps="[\'step1\'\,\'step2\'\,\'step3\']"><feb-stepper>');
                 var directiveScope = el.find('feb-stepper').isolateScope();
                 expect(directiveScope.control.numberOfSteps).toBe(3);
             });
@@ -73,24 +76,28 @@
             describe('with start step defined', function() {
 
                 it('sets the start step as active', function() {
-                    var el = ce('<feb-stepper steps="[\'step1\'\,\'step2\'\,\'step3\']" start-step="2"><feb-stepper>');
+                    scope.control = {};
+                    var el = ce('<feb-stepper control="control" steps="[\'step1\'\,\'step2\'\,\'step3\']" start-step="2"><feb-stepper>');
                     expect(el.find('.feb-step-active').length).toBe(1);
                 });
 
                 it('set previous steps as completed', function() {
-                    var el = ce('<feb-stepper steps="[\'step1\'\,\'step2\'\,\'step3\']" start-step="3"><feb-stepper>');
+                    scope.control = {};
+                    var el = ce('<feb-stepper control="control" steps="[\'step1\'\,\'step2\'\,\'step3\']" start-step="3"><feb-stepper>');
                     expect(el.find('.feb-step-completed').length).toBe(2);
                 });
 
                 it('set the start flag then start-step is set to 1', function() {
-                    var el = ce('<feb-stepper steps="[\'step1\'\,\'step2\'\,\'step3\']" start-step="1"><feb-stepper>');
+                    scope.control = {};
+                    var el = ce('<feb-stepper control="control" steps="[\'step1\'\,\'step2\'\,\'step3\']" start-step="1"><feb-stepper>');
                     var directiveScope = el.find('feb-stepper').isolateScope();
                     expect(directiveScope.control.start).toBe(true);
                     expect(directiveScope.control.end).toBe(false);
                 });
 
                 it('set the end flag if the start-step is the last step', function() {
-                    var el = ce('<feb-stepper steps="[\'step1\'\,\'step2\'\,\'step3\']" start-step="3"><feb-stepper>');
+                    scope.control = {};
+                    var el = ce('<feb-stepper control="control" steps="[\'step1\'\,\'step2\'\,\'step3\']" start-step="3"><feb-stepper>');
                     var directiveScope = el.find('feb-stepper').isolateScope();
                     expect(directiveScope.control.start).toBe(false);
                     expect(directiveScope.control.end).toBe(true);
