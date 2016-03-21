@@ -1,6 +1,6 @@
 {
   "name": "feb-stepper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Angular directive to visually show steps in a wizards etc.",
   "main": "stepper.js",
   "scripts": {
