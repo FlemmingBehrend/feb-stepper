@@ -1,9 +1,13 @@
 # feb-stepper [![Build Status](https://travis-ci.org/FlemmingBehrend/feb-stepper.svg)](https://travis-ci.org/FlemmingBehrend/feb-stepper)
+
+**This repo is not maintained anymore. Pull requests with tests that passes ci will be merged, otherwise you are free to fork and modify it.**
+
 Angular directive to visually show steps in a wizards etc. If it does not fit your needs you are welcome to fork and build your own version based on this.
 
 ![](stepper.gif)
 
-##Usage
+
+## Usage
 1. Type `bower install FlemmingBehrend/feb-stepper`
 2. Add the css to your index.hxml with `<link rel="stylesheet" href="bower_components/feb-stepper/stepper.css">`
 3. Add the script to your index.html with `<script src="bower_components/feb-stepper/stepper.js></script>`
